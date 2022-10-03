@@ -68,9 +68,15 @@
         height: 450px;
         text-align: left;
         margin-bottom: 70px;
+        border-radius: 4px;
+
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+          rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+          rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
       }
       img {
-        width: 100%;
+        width: 98%;
+        padding: 1%;
         height: 300px;
       }
       p {
@@ -171,6 +177,7 @@
     async function main() {
       let name = document.getElementById("movie").value;
       if (name.length < 3) {
+        list();
         return false;
       }
       let res = await searchMovies();
@@ -192,6 +199,9 @@
       );
       let data = await res.json();
       console.log(data);
+      let movie = [];
+      movie.push(data);
+      localStorage.setItem("movie", JSON.stringify(movie));
       showData(data);
     }
     function showData(d) {
